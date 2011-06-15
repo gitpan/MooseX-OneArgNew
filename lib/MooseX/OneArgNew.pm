@@ -1,6 +1,6 @@
 package MooseX::OneArgNew;
 BEGIN {
-  $MooseX::OneArgNew::VERSION = '0.001';
+  $MooseX::OneArgNew::VERSION = '0.002';
 }
 use MooseX::Role::Parameterized;
 # ABSTRACT: teach ->new to accept single, non-hashref arguments
@@ -53,11 +53,7 @@ MooseX::OneArgNew - teach ->new to accept single, non-hashref arguments
 
 =head1 VERSION
 
-version 0.001
-
-=head1 WARNING
-
-The interface for this library may change drastically.  It is not yet stable.
+version 0.002
 
 =head1 SYNOPSIS
 
@@ -130,7 +126,7 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Ricardo Signes.
+This software is copyright (c) 2011 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
