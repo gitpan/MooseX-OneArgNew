@@ -1,6 +1,6 @@
 package MooseX::OneArgNew;
-BEGIN {
-  $MooseX::OneArgNew::VERSION = '0.002';
+{
+  $MooseX::OneArgNew::VERSION = '0.003';
 }
 use MooseX::Role::Parameterized;
 # ABSTRACT: teach ->new to accept single, non-hashref arguments
@@ -23,6 +23,11 @@ parameter type => (
   required => 1,
 );
 
+parameter coerce => (
+  isa      => 'Bool',
+  default  => 0,
+);
+
 parameter init_arg => (
   isa      => 'Str',
   required => 1,
@@ -36,15 +41,17 @@ role {
     my $self = shift;
     return $self->$orig(@_) unless @_ == 1;
 
-    return $self->$orig(@_) unless $p->type->check($_[0]);
+    my $value = $p->coerce ? $p->type->coerce($_[0]) : $_[0];
+    return $self->$orig(@_) unless $p->type->check($value);
 
-    return { $p->init_arg => $_[0] }
+    return { $p->init_arg => $value }
   };
 };
 
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -53,7 +60,7 @@ MooseX::OneArgNew - teach ->new to accept single, non-hashref arguments
 
 =head1 VERSION
 
-version 0.002
+version 0.003
 
 =head1 SYNOPSIS
 
@@ -109,6 +116,13 @@ MooseX::Type.
 This is the string that will be used as the key for the hashref constructed
 from the one-arg call to new.
 
+=item coerce
+
+If true, a single argument to new will be coerced into the expected type if
+possible.  Keep in mind that if there are no coercions for the type, this will
+be an error, and that if a coercion from HashRef exists, you might be getting
+yourself into a weird situation.
+
 =back
 
 =head2 WARNINGS
@@ -126,10 +140,9 @@ Ricardo Signes <rjbs@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2011 by Ricardo Signes.
+This software is copyright (c) 2013 by Ricardo Signes.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
