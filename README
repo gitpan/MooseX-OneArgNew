@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution MooseX-OneArgNew,
-version 0.003:
+version 0.004:
 
   teach ->new to accept single, non-hashref arguments
 

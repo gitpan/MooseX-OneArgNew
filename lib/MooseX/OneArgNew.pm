@@ -1,6 +1,6 @@
 package MooseX::OneArgNew;
 {
-  $MooseX::OneArgNew::VERSION = '0.003';
+  $MooseX::OneArgNew::VERSION = '0.004';
 }
 use MooseX::Role::Parameterized;
 # ABSTRACT: teach ->new to accept single, non-hashref arguments
@@ -60,7 +60,7 @@ MooseX::OneArgNew - teach ->new to accept single, non-hashref arguments
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
 =head1 SYNOPSIS
 
@@ -101,7 +101,7 @@ When making a message:
 
 MooseX::OneArgNew lets your constructor take a single argument, which will be
 translated into the value for a one-entry hashref.  It is a L<parameterized
-role|MooseX::Role::Parameterized> with two parameters:
+role|MooseX::Role::Parameterized> with three parameters:
 
 =over 4
 

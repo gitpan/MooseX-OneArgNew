@@ -25,14 +25,15 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => 0
   },
   "TEST_REQUIRES" => {
-    "File::Find" => 0,
-    "File::Temp" => 0,
+    "File::Spec" => 0,
+    "IO::Handle" => 0,
+    "IPC::Open3" => 0,
     "Moose" => 0,
     "Test::More" => "0.96",
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => "t/*.t"
   }
